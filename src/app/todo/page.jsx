@@ -22,9 +22,7 @@ export default function Todo() {
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks');
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
+    setTasks(JSON.parse(storedTasks));
   }, []);
 
   const handleAddTask = () => {
