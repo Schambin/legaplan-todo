@@ -1,0 +1,307 @@
+.todoContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1.5rem 3.5rem 0 3.5rem;
+    max-width: 100vw;
+    max-height: 100vh;
+    transition: filter 0.3s ease;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.0625rem solid rgba(215, 221, 233, 1);
+    margin-bottom: 2.5rem;
+  
+    p {
+      font-weight: 400;
+      letter-spacing: -2%;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  
+    h1 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1.875rem;
+      margin-left: 4.0625rem;
+    }
+}
+
+.tasksMainContainer {
+    width: 28.125rem;
+}
+  
+.tasksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-radius: 1rem;
+    border: 0.0625rem solid rgba(234, 236, 240, 1);
+    box-shadow: 0rem 0.0625rem 0.125rem rgba(16, 24, 40, 0.05);
+  
+    p {
+      color: rgba(0, 0, 0, 0.54);
+      font-weight: 400;
+      line-height: 1.25rem;
+    }
+}
+  
+.input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.3125rem;
+    width: 18.75rem;
+}
+  
+.addButton {
+    padding: 1rem 0;
+    width: 100%;
+    font-size: 1rem;
+    background: linear-gradient(90deg, #0796d3 0%, #53c0f0 68.65%);
+    color: white;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #005bb5;
+    }
+}
+  
+.taskList {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+  
+.taskItem {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 1rem;
+    padding: 1rem;
+    border: 0.0625rem dashed rgba(215, 221, 233, 1);
+    border-radius: 0.3125rem;
+    margin-bottom: 0.625rem;
+    width: 20rem;
+    transition: .3s;
+
+    &:hover {
+        background-color: rgba(247, 249, 253, 1);
+    }
+
+    button {
+        position: absolute;
+        right: 0;
+        margin-right: 1.1875rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        color: rgba(176, 187, 209, 1);
+    }
+
+    .taskText {
+        word-wrap: break-word;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+  
+.checkbox {
+    margin-right: 0.625rem;
+}
+  
+.completedTask {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.54);
+}
+  
+.completedLabel {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+}
+  
+.noCompletedTasks {
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 400;
+    line-height: 1.25rem;
+}
+
+.noTasksMessage {
+    color: rgba(0, 0, 0, 0.54);
+    text-decoration: underline;
+    font-weight: 400;
+    line-height: 1.25rem;
+    text-align: center;
+    margin-top: 0.625rem;
+}
+  
+.modalOverlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.836);
+    backdrop-filter: blur(0.0625rem);
+}
+  
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 28.125rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0rem 1.5rem 3rem -0.75rem rgba(16, 24, 40, 0.18);
+
+    h2 {
+        margin: 0;
+    }
+
+    input {
+        padding: 1rem;
+        border: 0.0625rem solid rgba(215, 221, 233, 1);
+        border-radius: 0.5rem;
+    }
+}
+  
+.modalButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+  
+.cancelButton, .addTaskButton, .deleteButton {
+    padding: 1rem 3.9rem;
+    border: none;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+}
+  
+.cancelButton {
+    background: rgba(231, 238, 251, 1);
+    color: black;
+    font-weight: 400;
+    line-height: 1.21rem;
+}
+  
+.addTaskButton {
+    background: linear-gradient(90deg, #0796D3 0%, #53C0F0 68.65%);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    line-height: 1.21rem;
+}
+
+.deleteButton {
+    background: linear-gradient(90deg, #D30707 0%, #F05353 68.65%);
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    line-height: 1.21rem;
+}
+
+@media (max-width: 576px) {
+    .todoContainer {
+        padding: 0;
+        margin: 1.5rem;
+    }
+    
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 0.5rem;
+        text-align: left;
+        min-width: 272px;
+
+        Image {
+            width: 150px;
+            height: 36px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 19.36px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .taskItem {
+        max-width: 208px;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        width: 20em;
+
+        .taskText {
+            max-width: 140px;
+            word-wrap: break-word;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .tasksMainContainer {
+        width: 100%;
+        margin: 1.5rem;
+    }
+
+    .modalContent {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modalOverlay {
+        .modalButtons {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+}
+
+/* @media (min-width: 576px) and (max-width: 768px) {
+    .tasksMainContainer {
+        width: 90%;
+    }
+
+    .taskItem {
+        width: 90%;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .tasksMainContainer {
+        width: 450px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+        margin-left: 4.0625rem;
+    }
+
+    .taskItem {
+        width: 320px;
+        font-size: 1rem;
+    }
+} */
