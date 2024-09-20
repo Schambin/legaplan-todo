@@ -2,7 +2,7 @@
 
 import '../../styles/global.scss';
 import { FiTrash } from "react-icons/fi";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './todo.module.scss';
 import Image from 'next/image';
 import dayjs from 'dayjs';
@@ -11,11 +11,18 @@ import 'dayjs/locale/pt-br';
 export default function Todo() {
   dayjs.locale('pt-br');
 
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const storedTasks = localStorage.getItem('tasks');
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  });
   const [showModal, setShowModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleAddTask = () => {
     if (newTaskTitle.trim()) {
