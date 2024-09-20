@@ -8,36 +8,42 @@ import Image from 'next/image';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
-export default function Todo() {
+export function Todo() {
   dayjs.locale('pt-br');
 
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem('tasks');
-    return savedTasks ? JSON.parse(savedTasks) : [];
-  });
+  const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const [taskToDelete, setTaskToDelete] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    if (typeof window !== "undefined") {
+      const savedTasks = localStorage.getItem('tasks');
+      if (savedTasks) {
+        setTasks(JSON.parse(savedTasks));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
   }, [tasks]);
 
   const handleAddTask = () => {
     if (newTaskTitle.trim()) {
       const updatedTasks = [...tasks, { text: newTaskTitle, isCompleted: false }];
       setTasks(updatedTasks);
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
       setNewTaskTitle('');
       setShowModal(false);
     }
-  }
+  };
 
   const handleDeleteTask = () => {
     const updatedTasks = tasks.filter(task => task !== taskToDelete);
     setTasks(updatedTasks);
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
     setShowDeleteModal(false);
     setTaskToDelete(null);
   };
