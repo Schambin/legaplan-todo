@@ -35,7 +35,7 @@ export default function Todo() {
       setNewTaskTitle('');
       setShowModal(false);
     }
-  };
+  }
 
   const handleDeleteTask = () => {
     const updatedTasks = tasks.filter(task => task !== taskToDelete);
