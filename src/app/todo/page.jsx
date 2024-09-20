@@ -21,17 +21,28 @@ export default function Todo() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    } return localStorage;
-  }, [tasks]);
+    const storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
+  }, []);
 
   const handleAddTask = () => {
     if (newTaskTitle.trim()) {
-      setTasks([...tasks, { text: newTaskTitle, isCompleted: false }]);
+      const updatedTasks = [...tasks, { text: newTaskTitle, isCompleted: false }];
+      setTasks(updatedTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
       setNewTaskTitle('');
       setShowModal(false);
     }
+  };
+
+  const handleDeleteTask = () => {
+    const updatedTasks = tasks.filter(task => task !== taskToDelete);
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    setShowDeleteModal(false);
+    setTaskToDelete(null);
   };
 
   const handleToggleTask = (taskToToggle) => {
@@ -66,11 +77,6 @@ export default function Todo() {
     setTaskToDelete(null);
   };
 
-  const handleDeleteTask = () => {
-    setTasks(tasks.filter(task => task !== taskToDelete));
-    setShowDeleteModal(false);
-    setTaskToDelete(null);
-  };
 
   const today = dayjs();
   let todaysDate = today.format('dddd, DD [de] MMMM [de] YYYY');
