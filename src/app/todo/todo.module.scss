@@ -1,3 +1,19 @@
+// Color variables
+$color-black-light: rgba(0, 0, 0, 0.54);
+$color-black-dark: rgba(0, 0, 0, 0.7);
+$color-gray-medium:rgba(176, 187, 209, 1);
+$color-gray-lines: rgba(215, 221, 233, 1);
+$color-gray-dark: rgba(234, 236, 240, 1);
+$color-white: rgba(255, 255, 255, 1);
+$color-white-transparent: rgba(255, 255, 255, 0.836);
+$color-blue-start: #0796d3;
+$color-blue-end: #53c0f0;
+$color-blue-checkmarkBg: rgba(160, 220, 246, 1);
+$color-blue-checkmarkCheck: rgba(7, 150, 211, 1);
+$color-red-start: #D30707;
+$color-red-end: #F05353;
+
+
 .todoContainer {
     display: flex;
     align-items: center;
@@ -13,13 +29,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 0.0625rem solid rgba(215, 221, 233, 1);
+    border-bottom: 0.0625rem solid $color-gray-lines;
     margin-bottom: 2.5rem;
   
     p {
       font-weight: 400;
       letter-spacing: -2%;
-      color: rgba(0, 0, 0, 0.54);
+      color: $color-black-light;
     }
   
     h1 {
@@ -40,30 +56,22 @@
     align-items: center;
     margin-bottom: 1.5rem;
     border-radius: 1rem;
-    border: 0.0625rem solid rgba(234, 236, 240, 1);
+    border: 0.0625rem solid $color-gray-dark;
     box-shadow: 0rem 0.0625rem 0.125rem rgba(16, 24, 40, 0.05);
   
     p {
-      color: rgba(0, 0, 0, 0.54);
+      color: $color-black-light;
       font-weight: 400;
       line-height: 1.25rem;
     }
-}
-  
-.input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.3125rem;
-    width: 18.75rem;
 }
   
 .addButton {
     padding: 1rem 0;
     width: 100%;
     font-size: 1rem;
-    background: linear-gradient(90deg, #0796d3 0%, #53c0f0 68.65%);
-    color: white;
+    background: linear-gradient(90deg, $color-blue-start 0%, $color-blue-end 68.65%);
+    color: $color-white;
     border: none;
     border-radius: 0.3125rem;
     cursor: pointer;
@@ -88,7 +96,7 @@
     justify-content: left;
     font-size: 1rem;
     padding: 1rem;
-    border: 0.0625rem dashed rgba(215, 221, 233, 1);
+    border: 0.0625rem dashed $color-gray-lines;
     border-radius: 0.3125rem;
     margin-bottom: 0.625rem;
     width: 20rem;
@@ -96,6 +104,7 @@
 
     &:hover {
         background-color: rgba(247, 249, 253, 1);
+        transform: scale(1.1);
     }
 
     button {
@@ -106,39 +115,80 @@
         border: none;
         cursor: pointer;
         transition: transform 0.3s ease;
-        color: rgba(176, 187, 209, 1);
+        color: $color-gray-medium;
     }
 
     .taskText {
+        max-width: 250px;
         word-wrap: break-word;
         white-space: normal;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-}
-  
-.checkbox {
-    margin-right: 0.625rem;
+
+    .checkbox {
+        margin-right: 0.625rem;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    
+    .checkmark {
+        width: 24px;
+        height: 24px;
+        border: 1px solid $color-gray-lines;
+        border-radius: 4px;
+        margin-right: 8px;
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .checkbox:checked + .checkmark {
+        background: $color-blue-checkmarkBg;
+        border: 1px solid $color-blue-start;
+    }
+    
+    .checkmark::after {
+        content: '';
+        position: absolute;
+        display: none;
+    }
+    
+    .checkbox:checked + .checkmark::after {
+        display: block;
+    }
+    
+    .checkmark::after {
+        left: 8px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: 1px solid $color-blue-checkmarkCheck;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
 }
   
 .completedTask {
     text-decoration: line-through;
-    color: rgba(0, 0, 0, 0.54);
+    color: $color-black-light;
 }
   
 .completedLabel {
     font-weight: 500;
-    color: rgba(0, 0, 0, 0.7);
+    color: $color-black-dark;
 }
   
 .noCompletedTasks {
-    color: rgba(0, 0, 0, 0.54);
+    color: $color-black-light;
     font-weight: 400;
     line-height: 1.25rem;
 }
 
 .noTasksMessage {
-    color: rgba(0, 0, 0, 0.54);
+    color: $color-black-light;
     text-decoration: underline;
     font-weight: 400;
     line-height: 1.25rem;
@@ -155,7 +205,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.836);
+    background: $color-white-transparent;
     backdrop-filter: blur(0.0625rem);
 }
   
@@ -166,7 +216,7 @@
     padding: 2rem;
     max-width: 28.125rem;
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 1);
+    background: $color-white;
     box-shadow: 0rem 1.5rem 3rem -0.75rem rgba(16, 24, 40, 0.18);
 
     h2 {
@@ -175,7 +225,7 @@
 
     input {
         padding: 1rem;
-        border: 0.0625rem solid rgba(215, 221, 233, 1);
+        border: 0.0625rem solid $color-gray-lines;
         border-radius: 0.5rem;
     }
 }
@@ -201,15 +251,19 @@
 }
   
 .addTaskButton {
-    background: linear-gradient(90deg, #0796D3 0%, #53C0F0 68.65%);
-    color: rgba(255, 255, 255, 1);
+    background: linear-gradient(90deg, $color-blue-start 0%, $color-blue-end 68.65%);
+    color: $color-white;
     font-weight: 500;
     line-height: 1.21rem;
+
+    &:hover {
+        background-color: #000000;
+    }
 }
 
 .deleteButton {
-    background: linear-gradient(90deg, #D30707 0%, #F05353 68.65%);
-    color: rgba(255, 255, 255, 1);
+    background: linear-gradient(90deg, $color-red-start 0%, $color-red-end 68.65%);
+    color: $color-white;
     font-weight: 500;
     line-height: 1.21rem;
 }
@@ -249,6 +303,7 @@
         font-size: 0.875rem;
         white-space: nowrap;
         width: 20em;
+        transition: .3s ease-in-out;
 
         .taskText {
             max-width: 140px;
@@ -278,30 +333,3 @@
         }
     }
 }
-
-/* @media (min-width: 576px) and (max-width: 768px) {
-    .tasksMainContainer {
-        width: 90%;
-    }
-
-    .taskItem {
-        width: 90%;
-        font-size: 1rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .tasksMainContainer {
-        width: 450px;
-    }
-
-    .header h1 {
-        font-size: 1.5rem;
-        margin-left: 4.0625rem;
-    }
-
-    .taskItem {
-        width: 320px;
-        font-size: 1rem;
-    }
-} */
