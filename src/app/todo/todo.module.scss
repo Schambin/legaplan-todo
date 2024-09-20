@@ -42,7 +42,7 @@ $color-red-end: #F05353;
       font-weight: 500;
       font-size: 1.5rem;
       line-height: 1.875rem;
-      margin-left: 4.0625rem;
+      margin-left: 6rem;
     }
 }
 
@@ -99,12 +99,14 @@ $color-red-end: #F05353;
     border: 0.0625rem dashed $color-gray-lines;
     border-radius: 0.3125rem;
     margin-bottom: 0.625rem;
-    width: 20rem;
+    width: 24.125rem;
+    // height: ;
     transition: .3s;
 
     &:hover {
+        border: 1px solid transparent;
         background-color: rgba(247, 249, 253, 1);
-        transform: scale(1.1);
+        // transform: scale(1.05); //not in the project
     }
 
     button {
