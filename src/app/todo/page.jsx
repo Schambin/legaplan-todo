@@ -8,7 +8,7 @@ import Image from 'next/image';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
-export function Todo() {
+export default function Todo() {
   dayjs.locale('pt-br');
 
   const [tasks, setTasks] = useState([]);
