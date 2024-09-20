@@ -90,21 +90,25 @@ export default function Todo() {
           <ul className={styles.taskList}>
             {activeTasks.length > 0 ? (
               activeTasks.map((task, index) => (
-                <li
-                  key={index}
-                  className={styles.taskItem}>
+                <li key={index} className={styles.taskItem}>
                   <input
                     type="checkbox"
                     className={styles.checkbox}
                     checked={task.isCompleted}
                     onChange={() => handleToggleTask(task)}
-                    maxLength={30}
+                    id={`checkbox-${index}`}
                   />
+                  <span
+                    className={styles.checkmark}
+                    onClick={() => handleToggleTask(task)}
+                    htmlFor={`checkbox-${index}`}
+                  ></span>
                   <p className={styles.taskText}>{task.text}</p>
                   <button onClick={() => handleOpenDeleteModal(task)}>
                     <FiTrash size={24} />
                   </button>
                 </li>
+
               ))
             ) : (
               <p className={styles.noTasksMessage}>Você não possui tarefas criadas</p>
@@ -115,17 +119,20 @@ export default function Todo() {
               <p className={styles.completedLabel}>Tarefas finalizadas</p>
               <ul className={styles.taskList}>
                 {completedTasks.map((task, index) => (
-                  <li
-                    key={index}
-                    className={`${styles.taskItem} ${styles.completedTask}`}>
+                  <li key={index} className={styles.taskItem}>
                     <input
                       type="checkbox"
                       className={styles.checkbox}
                       checked={task.isCompleted}
                       onChange={() => handleToggleTask(task)}
-                      maxLength={30}
                     />
-                    <p className={styles.taskText}>{task.text}</p>
+                    <span
+                      className={styles.checkmark}
+                      onClick={() => handleToggleTask(task)}
+                    ></span>
+                    <p className={`${styles.taskText} ${task.isCompleted ? styles.completedTask : ''}`}>
+                      {task.text}
+                    </p>
                     <button onClick={() => handleOpenDeleteModal(task)}>
                       <FiTrash size={24} />
                     </button>
@@ -139,6 +146,7 @@ export default function Todo() {
           Adicionar nova tarefa
         </button>
 
+        {/* AddTask Modal */}
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
@@ -163,7 +171,7 @@ export default function Todo() {
           </div>
         )}
 
-        {/* Modal de confirmação de exclusão */}
+        {/* Modal Exclusion Confimation */}
         {showDeleteModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
