@@ -12,8 +12,8 @@ export default function Todo() {
   dayjs.locale('pt-br');
 
   const [tasks, setTasks] = useState(() => {
-    const storedTasks = localStorage.getItem('tasks');
-    return storedTasks ? JSON.parse(storedTasks) : [];
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
   });
   const [showModal, setShowModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
@@ -21,9 +21,8 @@ export default function Todo() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
-    setTasks(JSON.parse(storedTasks));
-  }, []);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleAddTask = () => {
     if (newTaskTitle.trim()) {
