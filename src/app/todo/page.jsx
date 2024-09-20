@@ -21,7 +21,9 @@ export default function Todo() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    } return localStorage;
   }, [tasks]);
 
   const handleAddTask = () => {
