@@ -26,11 +26,11 @@ export default function Todo() {
     }
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-  }, [tasks]);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     localStorage.setItem('tasks', JSON.stringify(tasks));
+  //   }
+  // }, [tasks]);
 
   const handleAddTask = () => {
     if (newTaskTitle.trim()) {
